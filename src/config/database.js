@@ -1,30 +1,14 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-// Configuración de la base de datos
-const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'biblioteca',
+const pool = mysql.createPool({
+  host: process.env.DB_HOST || 'bqshb8byxbqrzvi5vwpo-mysql.services.clever-cloud.com',
+  user: process.env.DB_USER || 'uycx3qgiuvbtw151',
+  password: process.env.DB_PASSWORD || 'mLd68rekKMwKP86OQIzO',
+  database: process.env.DB_NAME || 'bqshb8byxbqrzvi5vwpo',
   waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-};
+  connectionLimit: 5, // 🔴 NO MÁS DE 5
+  queueLimit: 10
+});
 
-// Crear pool de conexiones
-const pool = mysql.createPool(dbConfig);
-
-// Probar conexión
-const testConnection = async () => {
-  try {
-    const connection = await pool.getConnection();
-    console.log('✅ Conexión a MySQL exitosa');
-    connection.release();
-  } catch (error) {
-    console.error('❌ Error al conectar a MySQL:', error.message);
-    process.exit(1);
-  }
-};
-
-module.exports = { pool, testConnection };
+module.exports = pool;
