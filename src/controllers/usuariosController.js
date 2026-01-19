@@ -1,4 +1,5 @@
-const { pool } = require('../config/database');
+const pool = require('../config/database');
+
 
 // Obtener usuarios morosos de 5-10 semanas
 const getUsuariosMorosos5a10 = async (req, res) => {

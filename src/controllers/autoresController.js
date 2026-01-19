@@ -1,4 +1,4 @@
-const { pool } = require('../config/database');
+const pool = require('../config/database');
 
 // Obtener países con más autores
 const getAutoresPorPais = async (req, res) => {

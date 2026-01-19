@@ -1,4 +1,5 @@
-const { pool } = require('../config/database');
+const pool = require('../config/database');
+
 
 // Obtener libros más prestados
 const getLibrosMasPrestados = async (req, res) => {
